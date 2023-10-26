@@ -1,0 +1,7 @@
+.idea
+
+# Terraform
+.terraform/
+.tfcache
+.tfstate
+.terraform*
