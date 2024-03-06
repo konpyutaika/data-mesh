@@ -1,4 +1,3 @@
-# TODO: move to 03_orchestration_register
 locals {
   servers = [
     data.terraform_remote_state.data_product_metadata.outputs.code_location_server_config
