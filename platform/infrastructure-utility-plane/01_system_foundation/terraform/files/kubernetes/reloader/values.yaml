@@ -1,0 +1,6 @@
+# Namespace scope configuration
+#watchGlobally: false
+#namespaceSelector: ""
+reloader:
+  reloadOnCreate: true
+  syncAfterRestart: true

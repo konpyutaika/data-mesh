@@ -1,0 +1,13 @@
+installCRDs: false
+eventsAddress: ${eventsAddress}
+serviceAccount:
+  name: ${serviceAccountName}
+  create: false
+volumes:
+  - name: service-account-token
+    secret:
+      secretName: ${serviceAccountSecretName}
+volumeMounts:
+  - name: service-account-token
+    readOnly: true
+    mountPath: /var/run/secrets/kubernetes.io/serviceaccount
