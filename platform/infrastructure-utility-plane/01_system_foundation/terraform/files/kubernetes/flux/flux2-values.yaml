@@ -1,0 +1,5 @@
+installCRDs: false
+imageAutomationController:
+  create: false
+imageReflectionController:
+  create: false

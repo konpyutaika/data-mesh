@@ -1,7 +1,14 @@
 .idea
 
+__pycache__/
+tmp*/
+*.duckdb
 # Terraform
 .terraform/
 .tfcache
 .tfstate
 .terraform*
+
+secrets.tfvars
+
+platform/mesh-experience-plane/03_data_product_metadata/dagster
