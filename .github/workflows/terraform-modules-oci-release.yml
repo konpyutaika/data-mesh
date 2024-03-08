@@ -39,7 +39,6 @@ jobs:
         id: prepare_tag
         run: |
           VERSION="${{ github.event.inputs.tag }}-${GITHUB_SHA::8}"
-          echo $GITHUB_REF
           if [[ $GITHUB_REF == refs/tags/* ]]; then
             VERSION=${GITHUB_REF/refs\/tags\//}
           fi
@@ -55,8 +54,5 @@ jobs:
         run: |
           ls -la
           echo "${{ steps.prepare_tag.outputs.VERSION }}"
-          ls -la "${{ inputs.organization_layer_name }}"
-          ls -la "${{ inputs.organization_layer_name }}/${{ inputs.team_name }}"
-          ls -la "${{ inputs.organization_layer_name }}/${{ inputs.team_name }}/${{ inputs.products_path }}"
-          ls -la ${{ inputs.organization_layer_name }}/${{ inputs.team_name }}/${{ inputs.products_path }}/**
+          ls -la ${{ inputs.organization_layer_name }}/${{ inputs.team_name }}/${{ inputs.products_path }}/**/terraform
 #          bash -x ./publish-oci.sh ${{ steps.prepare_tag.outputs.VERSION }}
