@@ -1,7 +1,7 @@
 pushd .
 
 
-REPOSITORY=konpyutaika/data-mesh
+REPOSITORY=konpyutaika/data-mesh/terraform-modules
 SOURCE="$(git config --get remote.origin.url)"
 REVISION="$(git branch --show-current)/$(git rev-parse HEAD)"
 
