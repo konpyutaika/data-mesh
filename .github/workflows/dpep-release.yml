@@ -1,4 +1,4 @@
-name: "Infrastructure Utility Plane release"
+name: "Data Product Experience Plane release"
 
 on:
   push:
@@ -10,5 +10,5 @@ jobs:
     uses: ./.github/workflows/terraform-modules-oci-release.yml
     with:
         organization_layer_name: platform
-        team_name: infrastructure-utility-plane
+        team_name: data-product-experience-plane
         products_path: "products"
