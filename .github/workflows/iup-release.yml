@@ -1,0 +1,14 @@
+name: "Infrastructure Utility Plane release"
+
+on:
+  push:
+    tags:
+      - v*
+
+jobs:
+  terraform-modules-oci-release:
+    uses: ./.github/workflows/terraform-modules-oci-release.yml
+    with:
+        organization_layer_name: platform
+        team_name: infrastructure-utility-plane
+        products_path: "products"
