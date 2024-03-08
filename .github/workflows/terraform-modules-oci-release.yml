@@ -52,6 +52,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Publish OCI
         run: |
-          echo "${{ steps.prep.outputs.VERSION }}"
+          ls -la
+          echo "${{ steps.prepare_tag.outputs.VERSION }}"
           ls -la "${{ inputs.organization_layer_name }}/${{ inputs.team_name }}/${{ inputs.products_path }}/**"
-#          bash -x ./publish-oci.sh ${{ steps.prep.outputs.VERSION }}
+#          bash -x ./publish-oci.sh ${{ steps.prepare_tag.outputs.VERSION }}
