@@ -1,9 +1,9 @@
 name: " Terraform modules release on OCI"
 
 permissions:
-  contents: write
-  pullRequests: write
-  issues: write
+  contents: write # needed to write releases
+  id-token: write # needed for keyless signing
+  packages: write # needed for ghcr access
 
 on:
   workflow_call:
