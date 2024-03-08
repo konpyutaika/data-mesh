@@ -57,5 +57,5 @@ jobs:
           for terraformPath in $(find "$basePath" -type d -name 'terraform' -exec dirname {} \; | sed "s|^$basePath/||" | sort | uniq); do
               productName=${{ inputs.organization_layer_name }}-${{ inputs.team_name }}-$(echo "$terraformPath" | sed 's/\//-/g')
               echo "Publishing $productName"
-              bash -x ./publish-oci.sh ${{ steps.prepare_tag.outputs.VERSION }} "${basePath}/${terraformPath}/terraform" "${productName}"
+              bash -x ./platform/infrastructure-utility-plane/products/infraform/publish-oci.sh ${{ steps.prepare_tag.outputs.VERSION }} "${basePath}/${terraformPath}/terraform" "${productName}"
           done
