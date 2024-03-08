@@ -1,0 +1,57 @@
+name: " Terraform modules release on OCI"
+
+permissions:
+  contents: write
+  pullRequests: write
+  issues: write
+
+on:
+  workflow_call:
+    inputs:
+      runs-on:
+        required: false
+        type: string
+        default: ubuntu-latest
+      organization_layer_name:
+        required: false
+        type: string
+        default: platform
+      team_name:
+        required: true
+        type: string
+      products_path:
+        required: false
+        type: string
+        default: "products"
+
+
+env:
+  REPOSITORY: "${{ github.event.repository.name }}"
+
+jobs:
+  build-push:
+    runs-on: "${{ inputs.runs-on }}"
+    steps:
+      - uses: actions/checkout@v2
+      - uses: sigstore/cosign-installer@main
+      - uses: fluxcd/flux2/action@main
+      - name: Prepare tag
+        id: prepare_tag
+        run: |
+          VERSION="${{ github.event.inputs.tag }}-${GITHUB_SHA::8}"
+          if [[ $GITHUB_REF == refs/tags/* ]]; then
+            VERSION=${GITHUB_REF/refs\/tags\//}
+          fi
+          echo ::set-output name=BUILD_DATE::$(date -u +'%Y-%m-%dT%H:%M:%SZ')
+          echo ::set-output name=VERSION::${VERSION}
+      - name: Docker login
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Publish OCI
+        run: |
+          echo "${{ steps.prep.outputs.VERSION }}"
+          ls -la "${{ inputs.organization_layer_name }}/${{ inputs.team_name }}/${{ inputs.products_path }}/**"
+#          bash -x ./publish-oci.sh ${{ steps.prep.outputs.VERSION }}
