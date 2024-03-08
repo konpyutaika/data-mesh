@@ -54,9 +54,9 @@ jobs:
         run: |
           echo "${{ steps.prepare_tag.outputs.VERSION }}"
           basePath="${{ inputs.organization_layer_name }}/${{ inputs.team_name }}/${{ inputs.products_path }}"
-#          for terraformPath in $(find "$basePath" -type d -name 'terraform' -exec dirname {} \; | sed "s|^$basePath/||" | sort | uniq); do
-#            productName=$(echo "$terraformPath" | sed 's/\//-/g')
-#            echo "Publishing $productName"
-#            echo "${{ steps.prepare_tag.outputs.VERSION }} ${basePath}/${terraformPath}/terraform ${{ inputs.organization_layer_name }}-${{ inputs.team_name }}-${productName}"
-##            bash -x ./publish-oci.sh ${{ steps.prepare_tag.outputs.VERSION }} "${basePath}/${terraformPath}/terraform" "${{ inputs.organization_layer_name }}-${{ inputs.team_name }}-${productName}"
-#          done
+          for terraformPath in $(find "$basePath" -type d -name 'terraform' -exec dirname {} \; | sed "s|^$basePath/||" | sort | uniq); do
+              productName=$(echo "$terraformPath" | sed 's/\//-/g')
+              echo "Publishing $productName"
+              echo "${{ steps.prepare_tag.outputs.VERSION }} ${basePath}/${terraformPath}/terraform ${{ inputs.organization_layer_name }}-${{ inputs.team_name }}-${productName}"
+          done
+#             bash -x ./publish-oci.sh ${{ steps.prepare_tag.outputs.VERSION }} "${basePath}/${terraformPath}/terraform" "${{ inputs.organization_layer_name }}-${{ inputs.team_name }}-${productName}"
