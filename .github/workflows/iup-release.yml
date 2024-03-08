@@ -2,8 +2,8 @@ name: "[IUP] - Terraform modules release on OCI"
 
 on:
   push:
-#    tags:
-#      - release_*
+    tags:
+      - v*
 
 jobs:
   terraform-modules-oci-release:
