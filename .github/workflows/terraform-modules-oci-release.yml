@@ -54,5 +54,8 @@ jobs:
         run: |
           ls -la
           echo "${{ steps.prepare_tag.outputs.VERSION }}"
+          ls -la "${{ inputs.organization_layer_name }}"
+          ls -la "${{ inputs.organization_layer_name }}/${{ inputs.team_name }}"
+          ls -la "${{ inputs.organization_layer_name }}/${{ inputs.team_name }}/${{ inputs.products_path }}"
           ls -la "${{ inputs.organization_layer_name }}/${{ inputs.team_name }}/${{ inputs.products_path }}/**"
 #          bash -x ./publish-oci.sh ${{ steps.prepare_tag.outputs.VERSION }}
